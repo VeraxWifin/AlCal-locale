@@ -13,7 +13,7 @@ import Link from "next/link";
 export default async function DeleteEventType({
   params,
 }: {
-  params: { eventTypeId: string };
+  params: Promise<{ eventTypeId: string }>;
 }) {
   const { eventTypeId } = await params;
   return (

@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { CalendarX2, Clock, VideoIcon } from "lucide-react";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 async function getData(eventUrl: string, userName: string) {
@@ -51,8 +52,8 @@ export default async function BookingFormRoute({
   params,
   searchParams,
 }: {
-  params: { username: string; eventUrl: string };
-  searchParams: { date?: string; time?: string };
+  params: Promise<{ username: string; eventUrl: string }>;
+  searchParams: Promise<{ date?: string; time?: string }>;
 }) {
   const { eventUrl, username } = await params;
   const { date, time } = await searchParams;
@@ -71,10 +72,12 @@ export default async function BookingFormRoute({
         <Card className="w-full max-w-[600px]">
           <CardContent className="p-5 md:grid md:grid-cols-[1fr,auto,1fr] gap-4">
             <div>
-              <img
+              <Image
                 src={data.User?.image as string}
                 alt="Profile Image of User"
-                className="size-10 rounded-full"
+                className="size-9 rounded-full"
+                width={30}
+                height={30}
               />
               <p className="text-sm font-medium text-muted-foreground mt-1">
                 {data.User?.name}
@@ -135,10 +138,12 @@ export default async function BookingFormRoute({
         <Card className="w-full max-w-[1000px] mx-auto">
           <CardContent className="p-5 md:grid md:grid-cols-[1fr,auto,1fr,auto,1fr] gap-4">
             <div>
-              <img
+              <Image
                 src={data.User?.image as string}
                 alt="Profile Image of User"
-                className="size-10 rounded-full"
+                className="size-9 rounded-full"
+                width={30}
+                height={30}
               />
               <p className="text-sm font-medium text-muted-foreground mt-1">
                 {data.User?.name}
